@@ -1,973 +1,867 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anisa Aulia - Portfolio Detail</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --pink: #E8B4BC;
-            --navy: #2C3E50;
-            --gold: #D4AF37;
-            --white: #FFFFFF;
-            --gray: #6B7280;
-            --light-gray: #F8F9FA;
-        }
-
-        body {
-            background-color: var(--light-gray);
-            color: var(--navy);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode {
-            background-color: var(--navy);
-            color: var(--white);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode header {
-            background: #1a2530;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--pink);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .nav-links a {
-            color: var(--white);
-        }
-
-        .nav-links a:hover {
-            color: var(--pink);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--navy);
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .theme-toggle {
-            color: var(--white);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--pink) 0%, #F8F9FA 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        body.dark-mode .hero {
-            background: linear-gradient(135deg, var(--pink) 0%, #2C3E50 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(232,180,188,0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--white);
-            margin: 0 auto 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero .title {
-            font-size: 1.4rem;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 2;
-        }
-
-        body.dark-mode .hero .title {
-            color: var(--white);
-        }
-
-        .hero .bio {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            position: relative;
-            z-index: 2;
-            font-style: italic;
-        }
-
-        .hero .motto {
-            font-size: 1.1rem;
-            color: var(--navy);
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            padding: 1rem;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            border-left: 4px solid var(--gold);
-        }
-
-        body.dark-mode .hero .motto {
-            color: var(--white);
-            background: rgba(42, 52, 65, 0.8);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            position: relative;
-            z-index: 2;
-            margin-top: 1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background: var(--white);
-        }
-
-        body.dark-mode .about {
-            background: #1a2530;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            font-weight: 700;
-            color: var(--pink);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .education h3, .profile-detail h3 {
-            color: var(--pink);
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-        }
-
-        .timeline-item {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--pink);
-            transition: transform 0.3s ease;
-        }
-
-        body.dark-mode .timeline-item {
-            background: #253341;
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
-        }
-
-        .school-name {
-            font-weight: bold;
-            color: var(--navy);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        body.dark-mode .school-name {
-            color: var(--white);
-        }
-
-        .school-years {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        body.dark-mode .school-years {
-            color: var(--light-gray);
-        }
-
-        .school-score {
-            background: var(--gold);
-            color: var(--navy);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 5rem 0;
-            background: var(--light-gray);
-        }
-
-        body.dark-mode .experience {
-            background: #1a2530;
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .experience-category {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        body.dark-mode .experience-category {
-            background: #253341;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .experience-category h3 {
-            color: var(--pink);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .org-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        body.dark-mode .org-item {
-            border-bottom: 1px solid #1a2530;
-        }
-
-        .org-item:last-child {
-            border-bottom: none;
-        }
-
-        .org-role {
-            font-weight: bold;
-            color: var(--navy);
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-
-        body.dark-mode .org-role {
-            color: var(--white);
-        }
-
-        .org-place {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        body.dark-mode .org-place {
-            color: var(--light-gray);
-        }
-
-        /* Achievements Section */
-        .achievements {
-            padding: 5rem 0;
-            background: var(--white);
-        }
-
-        body.dark-mode .achievements {
-            background: #1a2530;
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .achievement-card {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--gold);
-            transition: transform 0.3s ease;
-        }
-
-        body.dark-mode .achievement-card {
-            background: #253341;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .achievement-year {
-            background: var(--pink);
-            color: var(--white);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 0.8rem;
-        }
-
-        .achievement-title {
-            font-weight: bold;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        body.dark-mode .achievement-title {
-            color: var(--white);
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 5rem 0;
-            background: var(--light-gray);
-        }
-
-        body.dark-mode .skills {
-            background: #1a2530;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        body.dark-mode .skill-category {
-            background: #253341;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-        }
-
-        .skill-category h3 {
-            color: var(--pink);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-item {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--light-gray);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        body.dark-mode .skill-bar {
-            background: #1a2530;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--pink), var(--gold));
-            border-radius: 4px;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: var(--white);
-            text-align: center;
-        }
-
-        body.dark-mode .contact {
-            background: #1a2530;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 2rem;
-            background: var(--light-gray);
-            border-radius: 15px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        body.dark-mode .contact-item {
-            background: #253341;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            color: inherit;
-        }
-
-        .contact-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-icon {
-            background: var(--gold);
-            transform: scale(1.1);
-        }
-
-        .contact-info h3 {
-            color: var(--pink);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-info p {
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        body.dark-mode .contact-info p {
-            color: var(--light-gray);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--navy);
-            color: var(--white);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--pink);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .profile-img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anisa Aulia — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --rose:#C9848E;--rose-dk:#A85F6A;--rose-lt:#EDD5D8;--rose-pale:#FBF0F1;
+  --gold:#B8965A;--gold-lt:#EAD9BA;--gold-pale:#FAF4E8;
+  --ink:#1E1A18;--ink-mid:#5C4F4A;--ink-lt:#9E8E88;
+  --cream:#FBF7F4;--white:#FFFFFF;
+  --border:rgba(201,132,142,.18);
+  --r:14px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;max-width:100vw}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(251,247,244,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{max-width:1140px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--rose);letter-spacing:.02em;display:flex;align-items:center;gap:.5rem;flex-shrink:0;white-space:nowrap}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--ink-mid);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links a:hover{color:var(--rose)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:.4rem;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+@media(max-width:720px){
+  .nav-links{display:none;flex-direction:column;gap:0;position:fixed;top:64px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.75rem 2rem}
+  .hamburger{display:flex}
+}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:center;padding:7rem 2rem 5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 90% at 50% 50%,black 20%,transparent 100%)}
+.hero-deco{position:absolute;z-index:0;pointer-events:none}
+.hero-deco.ring1{width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,132,142,.14);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse-ring 6s ease-in-out infinite}
+.hero-deco.ring2{width:700px;height:700px;border-radius:50%;border:1px solid rgba(184,150,90,.07);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse-ring 6s ease-in-out infinite .9s}
+.hero-deco.ring3{width:900px;height:900px;border-radius:50%;border:1px solid rgba(201,132,142,.04);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse-ring 6s ease-in-out infinite 1.8s}
+@keyframes pulse-ring{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.03);opacity:.5}}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(72px);z-index:0;animation:blob-drift 10s ease-in-out infinite alternate}
+.hero-blob.b1{width:420px;height:420px;top:3%;right:-6%;background:rgba(201,132,142,.12)}
+.hero-blob.b2{width:280px;height:280px;bottom:8%;left:-4%;background:rgba(184,150,90,.09);animation-delay:-4s}
+.hero-blob.b3{width:200px;height:200px;top:55%;right:22%;background:rgba(237,213,216,.14);animation-delay:-7s}
+@keyframes blob-drift{from{transform:translate(0,0) scale(1)}to{transform:translate(25px,35px) scale(1.06)}}
+.hero-inner{position:relative;z-index:1;max-width:1140px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);background:var(--rose-pale);border:1px solid var(--rose-lt);padding:.35rem 1rem;border-radius:50px;margin-bottom:1.8rem}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--rose)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5.2rem);line-height:1.05;font-weight:700;color:var(--ink);margin-bottom:1.2rem}
+.hero h1 span{color:var(--rose);font-style:italic;display:block}
+.hero h1 em{color:transparent;-webkit-text-stroke:2px var(--gold);font-style:normal}
+.hero-bio{font-size:1.05rem;color:var(--ink-mid);max-width:420px;margin-bottom:1.8rem;line-height:1.8}
+.hero-motto{font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem;color:var(--gold);padding:.8rem 1.2rem;background:var(--gold-pale);border-left:3px solid var(--gold-lt);border-radius:0 8px 8px 0;margin-bottom:2.2rem;max-width:420px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--rose);color:var(--white);padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-size:.88rem;font-weight:600;letter-spacing:.04em;transition:all .28s;box-shadow:0 6px 24px rgba(201,132,142,.35)}
+.btn:hover{background:var(--rose-dk);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,132,142,.4)}
+.btn-ghost{background:transparent;color:var(--ink-mid);border:1.5px solid rgba(92,79,74,.25);box-shadow:none}
+.btn-ghost:hover{border-color:var(--rose);color:var(--rose);background:transparent;box-shadow:none}
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative}
+.profile-frame{position:relative;width:340px;height:400px;flex-shrink:0}
+.profile-main{position:absolute;width:260px;height:300px;bottom:0;left:50%;transform:translateX(-50%);border-radius:60% 60% 50% 50% / 55% 55% 45% 45%;overflow:hidden;border:4px solid var(--white);box-shadow:0 20px 60px rgba(30,26,24,.2);z-index:3}
+.profile-main img{width:100%;height:100%;object-fit:cover;object-position:top}
+.profile-card-deco{position:absolute;background:linear-gradient(135deg,var(--rose-lt),var(--gold-lt));border-radius:20px;z-index:1}
+.profile-card-deco.c1{width:200px;height:240px;top:0;right:0;transform:rotate(8deg);opacity:.55}
+.profile-card-deco.c2{width:180px;height:220px;top:20px;left:0;transform:rotate(-6deg);opacity:.38}
+.float-badge{position:absolute;z-index:4;background:var(--white);border-radius:12px;padding:.6rem 1rem;box-shadow:0 8px 24px rgba(30,26,24,.12);font-size:.78rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.5rem;animation:badge-float 4s ease-in-out infinite alternate}
+.float-badge i{color:var(--rose);font-size:1rem}
+.float-badge.fb1{top:10px;left:-20px;animation-delay:0s}
+.float-badge.fb2{bottom:30px;right:-30px;animation-delay:-2s}
+.float-badge .badge-num{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose)}
+@keyframes badge-float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.4rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-lt)}
+.scroll-hint .arrow{animation:scroll-bounce 2s ease-in-out infinite}
+@keyframes scroll-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem;text-align:center}
+  .hero-text{order:2}.hero-visual{order:1}
+  .hero-bio,.hero-motto{max-width:100%;margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .profile-frame{width:280px;height:320px}
+  .profile-main{width:210px;height:250px}
+  .hero-deco{display:none}
+}
+
+/* SHARED */
+section{padding:5.5rem 2rem;position:relative;z-index:1}
+.wrap{max-width:1140px;margin:0 auto}
+.s-header{margin-bottom:3.5rem}
+.s-label{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:.6rem}
+.s-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--rose)}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;color:var(--ink);line-height:1.15}
+.s-title em{color:var(--rose);font-style:italic}
+.s-divider{width:50px;height:3px;border-radius:2px;margin-top:1rem;background:linear-gradient(90deg,var(--rose),var(--gold))}
+.bg-white{background:var(--white)}.bg-cream{background:var(--cream)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start}
+.about-text p{color:var(--ink-mid);margin-bottom:1.1rem;font-size:1.02rem;line-height:1.85}
+.chip-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.chip{background:var(--rose-pale);color:var(--rose);border:1px solid var(--rose-lt);padding:.32rem .9rem;border-radius:50px;font-size:.8rem;font-weight:600}
+.pull-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--rose);line-height:1.4;margin:2rem 0;padding-left:1.5rem;border-left:3px solid var(--rose-lt)}
+.pull-quote cite{display:block;font-size:.8rem;font-style:normal;color:var(--ink-lt);margin-top:.5rem;font-family:'Nunito',sans-serif}
+.edu-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.edu-label::before{content:'';width:16px;height:1px;background:var(--rose)}
+.tl-item{display:flex;gap:1.2rem;padding:1.3rem 1.5rem;background:var(--cream);border-radius:12px;border-left:3px solid var(--rose-lt);margin-bottom:.9rem;transition:border-color .25s,transform .25s,box-shadow .25s}
+.tl-item:hover{border-left-color:var(--rose);transform:translateX(5px);box-shadow:4px 0 16px rgba(201,132,142,.12)}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--rose);flex-shrink:0;margin-top:.6rem}
+.tl-school{font-weight:700;font-size:.97rem;margin-bottom:.2rem}
+.tl-year{color:var(--ink-lt);font-size:.82rem}
+.tl-score{display:inline-block;margin-top:.4rem;background:var(--gold-lt);color:var(--gold);padding:.2rem .7rem;border-radius:50px;font-size:.76rem;font-weight:700}
+@media(max-width:780px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
+.exp-card{background:var(--white);border-radius:18px;padding:2rem;border:1px solid var(--border);transition:box-shadow .28s,transform .28s;position:relative;overflow:hidden}
+.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--gold))}
+.exp-card:hover{box-shadow:0 16px 40px rgba(201,132,142,.14);transform:translateY(-5px)}
+.exp-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--rose);margin-bottom:1.3rem;display:flex;align-items:center;gap:.5rem}
+.org-item{padding:.7rem 0;border-bottom:1px solid var(--rose-pale)}
+.org-item:last-child{border-bottom:none}
+.org-role{font-weight:700;font-size:.93rem;display:block}
+.org-place{color:var(--ink-lt);font-size:.82rem}
+
+/* ACHIEVEMENTS */
+.ach-featured{display:flex;align-items:center;gap:2rem;background:linear-gradient(135deg,var(--rose-pale),var(--gold-pale));border-radius:18px;padding:2rem 2.5rem;border:1px solid var(--rose-lt);position:relative;overflow:hidden;margin-bottom:1rem}
+.ach-featured::after{content:'"';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:8rem;color:rgba(201,132,142,.08);line-height:1;pointer-events:none}
+.ach-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:var(--rose);line-height:1;flex-shrink:0}
+.ach-featured-year{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.ach-featured-title{font-size:1.2rem;font-weight:700;margin-bottom:.2rem}
+.ach-featured-sub{color:var(--ink-mid);font-size:.9rem}
+.ach-grid-sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.ach-card{background:var(--white);border-radius:14px;padding:1.4rem;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.ach-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--rose-pale) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.ach-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(201,132,142,.13)}
+.ach-card:hover::before{opacity:1}
+.ach-year{display:inline-block;background:var(--rose);color:var(--white);font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:.22rem .7rem;border-radius:50px;margin-bottom:.7rem}
+.ach-title{font-weight:700;font-size:.95rem;margin-bottom:.3rem;position:relative;z-index:1}
+.ach-sub{color:var(--ink-lt);font-size:.82rem;position:relative;z-index:1}
+
+/* ── GALLERY COLLAGE ── */
+.gallery-nav{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+.gnav-btn{background:var(--white);color:var(--ink-mid);border:1.5px solid var(--border);padding:.5rem 1.3rem;border-radius:50px;font-size:.82rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif}
+.gnav-btn:hover,.gnav-btn.active{background:var(--rose);color:var(--white);border-color:var(--rose)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* Collage item base */
+.ci{overflow:hidden;position:relative;cursor:pointer;background:var(--rose-pale);min-height:160px}
+.ci img,.ci video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.8,.25,1)}
+.ci:hover img{transform:scale(1.06)}
+.ci-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(30,26,24,.45) 0%,transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
+.ci:hover .ci-overlay{opacity:1}
+.video-badge{position:absolute;top:.7rem;right:.7rem;background:rgba(201,132,142,.88);color:white;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .7rem;border-radius:50px;display:flex;align-items:center;gap:.3rem;pointer-events:none;z-index:2}
+.video-badge .rec-dot{width:6px;height:6px;border-radius:50%;background:white;animation:rec-blink 1.5s ease-in-out infinite;flex-shrink:0}
+@keyframes rec-blink{0%,100%{opacity:1}50%{opacity:.2}}
+.ci video{pointer-events:none}
+
+/* MC — 4 foto portrait (HP berdiri), 2×2 simetris, tinggi cukup untuk portrait */
+.collage-mc{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:480px 480px;gap:10px}
+.collage-mc .ci:nth-child(1){border-radius:20px 8px 8px 20px}
+.collage-mc .ci:nth-child(2){border-radius:8px 20px 8px 8px}
+.collage-mc .ci:nth-child(3){border-radius:8px 8px 8px 20px}
+.collage-mc .ci:nth-child(4){border-radius:8px 8px 20px 8px}
+/* pastikan object-position dari atas biar wajah keliatan */
+.collage-mc .ci img{object-position:top center}
+
+/* PASKIBRA — 4 foto: banner atas + 3 kolom bawah, simetris */
+.collage-paskibra{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 200px;gap:10px}
+.collage-paskibra .ci:nth-child(1){grid-column:1/3;border-radius:20px 8px 8px 20px}
+.collage-paskibra .ci:nth-child(2){border-radius:8px 20px 8px 8px}
+.collage-paskibra .ci:nth-child(3){border-radius:8px 8px 8px 20px}
+.collage-paskibra .ci:nth-child(4){border-radius:8px 8px 20px 8px}
+
+/* PRESENTASI — tall left + stacked right, simetris */
+.collage-presentasi{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:280px 210px;gap:10px}
+.collage-presentasi .ci:nth-child(1){grid-row:1/3;border-radius:20px 8px 8px 20px}
+.collage-presentasi .ci:nth-child(2){border-radius:8px 20px 8px 8px}
+.collage-presentasi .ci:nth-child(3){border-radius:8px 8px 20px 8px}
+
+/* Responsive collage */
+@media(max-width:600px){
+  .collage-mc{grid-template-columns:1fr 1fr;grid-template-rows:260px 260px;gap:8px}
+  .collage-paskibra,.collage-presentasi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .collage-paskibra{grid-template-rows:auto}
+  .collage-paskibra .ci:nth-child(1){grid-column:1/3}
+  .collage-presentasi{grid-template-rows:auto}
+  .collage-presentasi .ci:nth-child(1){grid-row:auto;grid-column:1/3}
+  .ci{min-height:160px;border-radius:12px !important}
+}
+
+/* SERTIFIKAT — infinite drag carousel */
+.sert-carousel-wrap{
+  position:relative;
+  overflow:hidden; /* KRITIS: cegah track bocor ke luar viewport */
+  /* fade edges */
+  --fade-w:80px;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,black var(--fade-w),black calc(100% - var(--fade-w)),transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,black var(--fade-w),black calc(100% - var(--fade-w)),transparent 100%);
+}
+.sert-track{
+  display:flex;gap:16px;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  will-change:transform;
+  /* no overflow:hidden here — parent clips */
+  padding:8px 4px 16px; /* room for box-shadow */
+}
+.sert-track.grabbing{cursor:grabbing}
+.sert-track.no-transition{transition:none!important}
+.sert-item{
+  flex:0 0 220px;
+  border-radius:14px;overflow:hidden;
+  border:1.5px solid var(--border);
+  background:var(--white);
+  transition:transform .28s,box-shadow .28s;
+  cursor:zoom-in;
+}
+.sert-track.grabbing .sert-item{cursor:grabbing}
+.sert-item:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(201,132,142,.18)}
+.sert-item img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;pointer-events:none}
+.sert-label{padding:.55rem .85rem;font-size:.72rem;color:var(--ink-mid);font-weight:600;background:var(--cream);border-top:1px solid var(--border)}
+@media(max-width:600px){
+  .sert-item{flex:0 0 170px}
+  .sert-carousel-wrap{--fade-w:40px}
+}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
+.skill-card{background:var(--white);border-radius:18px;padding:2rem;border:1px solid var(--border);transition:transform .28s,box-shadow .28s}
+.skill-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(201,132,142,.12)}
+.skill-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose);margin-bottom:1.5rem}
+.skill-item{margin-bottom:1.2rem}
+.skill-row{display:flex;justify-content:space-between;font-size:.88rem;font-weight:600;margin-bottom:.45rem}
+.skill-pct{color:var(--gold)}
+.skill-track{height:5px;background:var(--rose-pale);border-radius:3px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.25,.8,.25,1)}
+
+/* CONTACT */
+.contact-inner{max-width:620px;margin:0 auto;text-align:center}
+.contact-desc{color:var(--ink-mid);margin-bottom:2.5rem;font-size:1.02rem}
+.contact-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem}
+.contact-card{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.8rem;background:var(--cream);border:1.5px solid var(--border);border-radius:16px;text-decoration:none;color:var(--ink);transition:all .28s;min-width:200px}
+.contact-card:hover{background:var(--rose);color:var(--white);border-color:var(--rose);transform:translateY(-3px);box-shadow:0 12px 28px rgba(201,132,142,.3)}
+.contact-card:hover .c-icon{background:rgba(255,255,255,.2);color:var(--white)}
+.c-icon{width:46px;height:46px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:all .28s}
+.c-info{text-align:left}
+.c-info strong{display:block;font-size:.9rem;font-weight:700}
+.c-info span{font-size:.78rem;opacity:.65}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:3rem 2rem;text-align:center;font-size:.83rem;position:relative;overflow:hidden}
+footer::before{content:'Anisa Aulia';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:7rem;font-weight:700;color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none;letter-spacing:.1em}
+.ft-logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--rose-lt);display:block;margin-bottom:.6rem}
+.ft-socials{display:flex;justify-content:center;gap:1rem;margin:1.2rem 0}
+.ft-socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);text-decoration:none;transition:all .25s}
+.ft-socials a:hover{background:var(--rose);border-color:var(--rose);color:white}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(20,16,14,.92);align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(8px)}
+.lightbox.open{display:flex}
+.lb-close{position:absolute;top:1.2rem;right:1.5rem;background:rgba(255,255,255,.1);border:none;color:white;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;font-family:inherit}
+.lb-close:hover{background:var(--rose)}
+#lb-img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:10px;display:block}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">Anisa Aulia</div>
-                <div class="nav-links">
-                    <a href="#about">Tentang</a>
-                    <a href="#experience">Pengalaman</a>
-                    <a href="#achievements">Prestasi</a>
-                    <a href="#skills">Keahlian</a>
-                    <a href="#contact">Kontak</a>
-                </div>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </nav>
+
+<!-- NAV -->
+<header>
+  <nav class="nav">
+    <div class="logo"><span class="logo-dot"></span>Anisa Aulia</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#achievements">Prestasi</a></li>
+      <li><a href="#gallery">Galeri</a></li>
+      <li><a href="#sertifikat">Sertifikat</a></li>
+      <li><a href="#skills">Keahlian</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco ring1"></div>
+  <div class="hero-deco ring2"></div>
+  <div class="hero-deco ring3"></div>
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Sistem Informasi &middot; STMIK Tazkia</div>
+      <h1>
+        <span>Anisa</span>
+        <em>Aulia</em>
+      </h1>
+      <p class="hero-bio">Lulusan Manajemen, kini menempuh S1 Sistem Informasi. Fokus pada pengembangan diri, kepemimpinan, dan organisasi.</p>
+      <div class="hero-motto">
+        "A motivated individual committed to continuous learning, personal growth, and professional excellence."
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Mari Terhubung</a>
+        <a href="#about" class="btn btn-ghost">Lihat Profil <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="profile-frame">
+        <div class="profile-card-deco c1"></div>
+        <div class="profile-card-deco c2"></div>
+        <div class="profile-main">
+          <img id="profileImage"
+               src="https://drive.google.com/thumbnail?id=1wUfpeMYE8Di4DI26mu-Gyv2tJsu3Vm_J&sz=w500"
+               alt="Anisa Aulia">
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <img src="https://drive.google.com/thumbnail?id=1wUfpeMYE8Di4DI26mu-Gyv2tJsu3Vm_J&sz=w500" alt="Anisa Aulia" class="profile-img" id="profileImage">
-            <h1>Anisa Aulia</h1>
-            <div class="title">Mahasiswa Sistem Informasi</div>
-            <p class="bio">Lulusan Manajemen, saat ini menempuh S1 Sistem Informasi di STMIK Tazkia Bogor. Fokus pada pengembangan diri dan organisasi.</p>
-            <div class="motto">
-                "A motivated individual committed to continuous learning, personal growth, and professional excellence."
-            </div>
-            <a href="#contact" class="cta-button">Mari Terhubung</a>
+        <div class="float-badge fb1">
+          <i class="fas fa-microphone"></i>
+          <span>MC &amp; Public Speaker</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">Tentang Saya</h2>
-            <div class="about-content">
-                <div class="profile-detail">
-                    <h3><i class="fas fa-user"></i> Profil</h3>
-                    <div class="about-text">
-                        <p>Berpengalaman sebagai pengurus OSIS, Paskibra dan PMR. Memiliki kemampuan public speaking yang kuat, prestasi akademik yang baik, serta aktif dalam kegiatan sosial dan keagamaan. Siap berkembang dan berkontribusi melalui kesempatan baru.</p>
-                    </div>
-                </div>
-                <div class="education">
-                    <h3><i class="fas fa-graduation-cap"></i> Pendidikan</h3>
-                    <div class="timeline-item">
-                        <span class="school-name">SMK Bumi Sejahtera</span>
-                        <span class="school-years">2022 - 2025</span>
-                        <span class="school-score">Nilai: 90.81</span>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="school-name">SMPN 1 Cibungbulang</span>
-                        <span class="school-years">2018 - 2022</span>
-                        <span class="school-score">Nilai: 89.39</span>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="school-name">SDN Cimanggu 2</span>
-                        <span class="school-years">2013 - 2018</span>
-                        <span class="school-score">Nilai: 69.38</span>
-                    </div>
-                </div>
-            </div>
+        <div class="float-badge fb2">
+          <span class="badge-num">5+</span>
+          <span>Penghargaan</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <h2 class="section-title">Pengalaman Organisasi</h2>
-            <div class="experience-grid">
-                <div class="experience-category">
-                    <h3><i class="fas fa-users"></i> Kepemimpinan</h3>
-                    <div class="org-item">
-                        <span class="org-role">Ketua PMR</span>
-                        <span class="org-place">SMPN 3 Cibungbulang</span>
-                    </div>
-                    <div class="org-item">
-                        <span class="org-role">Sekretaris Paskibra</span>
-                        <span class="org-place">SMPN 3 Cibungbulang</span>
-                    </div>
-                    <div class="org-item">
-                        <span class="org-role">Sekbid Kesehatan & Keamanan</span>
-                        <span class="org-place">OSIS SMK Bumi Sejahtera</span>
-                    </div>
-                    <div class="org-item">
-                        <span class="org-role">Sekbid Kesehatan</span>
-                        <span class="org-place">Paskibra SMK Bumi Sejahtera</span>
-                    </div>
-                </div>
-                <div class="experience-category">
-                    <h3><i class="fas fa-hands-helping"></i> Pengabdian</h3>
-                    <div class="org-item">
-                        <span class="org-role">Guru Ngaji</span>
-                        <span class="org-place">Hudallil Mustaqim</span>
-                    </div>
-                    <div class="org-item">
-                        <span class="org-role">MC Maulid Nabi</span>
-                        <span class="org-place">Kegiatan Kampung (2021)</span>
-                    </div>
-                    <div class="org-item">
-                        <span class="org-role">Moderator Seminar</span>
-                        <span class="org-place">Self Confident (2025)</span>
-                    </div>
-                </div>
-            </div>
+  <div class="scroll-hint">
+    <span class="arrow">&#8595;</span>
+    <small>scroll</small>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about bg-white" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="s-header">
+          <div class="s-label">01 &mdash; Tentang Saya</div>
+          <h2 class="s-title">Profil &amp; <em>Latar Belakang</em></h2>
+          <div class="s-divider"></div>
         </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section class="achievements" id="achievements">
-        <div class="container">
-            <h2 class="section-title">Prestasi & Penghargaan</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <span class="achievement-year">2025</span>
-                    <div class="achievement-title">Juara 1 Pensi Drama</div>
-                    <p>SMK Bumi Sejahtera</p>
-                </div>
-                <div class="achievement-card">
-                    <span class="achievement-year">2025</span>
-                    <div class="achievement-title">Penghargaan Lomba Ceramah</div>
-                    <p>Kompetisi tingkat sekolah</p>
-                </div>
-                <div class="achievement-card">
-                    <span class="achievement-year">2024</span>
-                    <div class="achievement-title">Penghargaan Orasi</div>
-                    <p>Gallery Indonesia</p>
-                </div>
-                <div class="achievement-card">
-                    <span class="achievement-year">2023</span>
-                    <div class="achievement-title">Paskibraka Tingkat Kecamatan</div>
-                    <p>Penghargaan kebangsaan</p>
-                </div>
-                <div class="achievement-card">
-                    <span class="achievement-year">2021</span>
-                    <div class="achievement-title">Penghargaan Hapalan Juz 30</div>
-                    <p>Mahasiswa Ibnu Khaldun</p>
-                </div>
-            </div>
+        <div class="about-text">
+          <p>Berpengalaman sebagai pengurus OSIS, Paskibra, dan PMR. Memiliki kemampuan <strong>public speaking</strong> yang kuat, prestasi akademik yang baik, serta aktif dalam kegiatan sosial dan keagamaan.</p>
+          <p>Siap berkembang dan berkontribusi melalui kesempatan baru yang bermakna dan penuh tantangan.</p>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2 class="section-title">Keahlian & Keterampilan</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Public Speaking & Komunikasi</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Public Speaking</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Event Hosting & Moderation</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Bahasa Inggris</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Teknis & Organisasi</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Microsoft Office</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Fast Typing</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Kepemimpinan Tim</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Seni & Kreativitas</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Dance & Action</span>
-                            <span>82%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Moderator Acara</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Event Planning</span>
-                            <span>78%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 78%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="pull-quote">
+          "Pemimpin bukan yang paling keras suaranya,<br>tapi yang paling tulus niatnya."
+          <cite>&mdash; Anisa Aulia</cite>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Mari Terhubung</h2>
-            <div class="contact-grid">
-                <a href="https://wa.me/6285893734378" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>WhatsApp</h3>
-                        <p>0858-9373-4378</p>
-                    </div>
-                </a>
-                
-                <a href="https://instagram.com/hei.its_cha" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Instagram</h3>
-                        <p>@hei.its_cha</p>
-                    </div>
-                </a>
-                
-                <a href="mailto:acutcntk13@gmail.com" class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h3>Email</h3>
-                        <p>acutcntk13@gmail.com</p>
-                    </div>
-                </a>
-            </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="edu-label">Riwayat Pendidikan</div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-school">SMK Bumi Sejahtera</div>
+            <div class="tl-year">2022 &ndash; 2025 &middot; Manajemen</div>
+            <span class="tl-score">Nilai Akhir: 90.81</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://wa.me/6285893734378"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/hei.its_cha"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:acutcntk13@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p>&copy; Anisa Aulia. All rights reserved.</p>
-            <p>Made with ❤️ using WebSipp</p>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-school">SMPN 1 Cibungbulang</div>
+            <div class="tl-year">2018 &ndash; 2022</div>
+            <span class="tl-score">Nilai Akhir: 89.39</span>
+          </div>
         </div>
-    </footer>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-school">SDN Cimanggu 2</div>
+            <div class="tl-year">2013 &ndash; 2018</div>
+            <span class="tl-score">Nilai Akhir: 69.38</span>
+          </div>
+        </div>
+        <div class="tl-item" style="border-left-color:var(--gold-lt)">
+          <div class="tl-dot" style="background:var(--gold)"></div>
+          <div>
+            <div class="tl-school">STMIK Tazkia Bogor</div>
+            <div class="tl-year">2025 &ndash; sekarang &middot; S1 Sistem Informasi</div>
+            <span class="tl-score" style="background:var(--gold-lt);color:var(--gold)">&#9679; Aktif</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Dark/Light Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
+<!-- EXPERIENCE -->
+<section class="bg-cream" id="experience">
+  <div class="wrap">
+    <div class="s-header reveal">
+      <div class="s-label">02 &mdash; Pengalaman</div>
+      <h2 class="s-title">Organisasi &amp; <em>Pengabdian</em></h2>
+      <div class="s-divider"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <h3><i class="fas fa-crown"></i> Kepemimpinan</h3>
+        <div class="org-item"><span class="org-role">Ketua PMR</span><span class="org-place">SMPN 3 Cibungbulang</span></div>
+        <div class="org-item"><span class="org-role">Sekretaris Paskibra</span><span class="org-place">SMPN 3 Cibungbulang</span></div>
+        <div class="org-item"><span class="org-role">Sekbid Kesehatan &amp; Keamanan</span><span class="org-place">OSIS SMK Bumi Sejahtera</span></div>
+        <div class="org-item"><span class="org-role">Sekbid Kesehatan</span><span class="org-place">Paskibra SMK Bumi Sejahtera</span></div>
+      </div>
+      <div class="exp-card reveal" style="transition-delay:.12s">
+        <h3><i class="fas fa-heart"></i> Pengabdian</h3>
+        <div class="org-item"><span class="org-role">Guru Ngaji</span><span class="org-place">Hudallil Mustaqim</span></div>
+        <div class="org-item"><span class="org-role">MC Maulid Nabi</span><span class="org-place">Kegiatan Kampung &middot; 2021</span></div>
+        <div class="org-item"><span class="org-role">Moderator Seminar</span><span class="org-place">Self Confident &middot; 2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<!-- ACHIEVEMENTS -->
+<section class="bg-white" id="achievements">
+  <div class="wrap">
+    <div class="s-header reveal">
+      <div class="s-label">03 &mdash; Prestasi</div>
+      <h2 class="s-title">Penghargaan &amp; <em>Capaian</em></h2>
+      <div class="s-divider"></div>
+    </div>
+    <div class="reveal">
+      <div class="ach-featured">
+        <div class="ach-num">01</div>
+        <div>
+          <div class="ach-featured-year">2025</div>
+          <div class="ach-featured-title">Juara 1 Pensi Drama</div>
+          <div class="ach-featured-sub">SMK Bumi Sejahtera &mdash; Peran utama dengan penampilan terbaik</div>
+        </div>
+      </div>
+      <div class="ach-grid-sm">
+        <div class="ach-card reveal"><span class="ach-year">2025</span><div class="ach-title">Penghargaan Lomba Ceramah</div><div class="ach-sub">Kompetisi tingkat sekolah</div></div>
+        <div class="ach-card reveal" style="transition-delay:.08s"><span class="ach-year">2024</span><div class="ach-title">Penghargaan Orasi</div><div class="ach-sub">Gallery Indonesia</div></div>
+        <div class="ach-card reveal" style="transition-delay:.16s"><span class="ach-year">2023</span><div class="ach-title">Paskibraka Tingkat Kecamatan</div><div class="ach-sub">Penghargaan kebangsaan</div></div>
+        <div class="ach-card reveal" style="transition-delay:.24s"><span class="ach-year">2021</span><div class="ach-title">Penghargaan Hapalan Juz 30</div><div class="ach-sub">Mahasiswa Ibnu Khaldun</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Animate skill bars on scroll
-        const animateSkills = () => {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
-            });
-        };
+<!-- GALLERY -->
+<section class="bg-cream" id="gallery">
+  <div class="wrap">
+    <div class="s-header reveal">
+      <div class="s-label">04 &mdash; Galeri</div>
+      <h2 class="s-title">Momen &amp; <em>Kegiatan</em></h2>
+      <div class="s-divider"></div>
+    </div>
+    <div class="gallery-nav reveal">
+      <button class="gnav-btn active" data-tab="mc">&#127908; MC</button>
+      <button class="gnav-btn" data-tab="paskibra">&#127987;&#65039; Paskibra</button>
+      <button class="gnav-btn" data-tab="presentasi">&#127891; Presentasi</button>
+    </div>
 
-        // Intersection Observer for skill animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateSkills();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+    <!-- MC -->
+    <div class="tab-panel active" id="tab-mc">
+      <div class="collage-mc">
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC1.jpeg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC1.jpeg" alt="MC 1" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC2.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC2.jpg" alt="MC 2" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC3.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/MC/MC3.jpg" alt="MC 3" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/MC/PHOTO-2026-05-08-23-06-12.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/MC/PHOTO-2026-05-08-23-06-12.jpg" alt="MC 4" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+      </div>
+    </div>
 
-        observer.observe(document.querySelector('.skills'));
 
-        // Profile image error handling
-        document.getElementById('profileImage').onerror = function() {
-            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0U4QjRCQyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BQTwvdGV4dD48L3N2Zz4=';
-        };
-    </script>
+    <!-- PASKIBRA -->
+    <div class="tab-panel" id="tab-paskibra">
+      <div class="collage-paskibra">
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG-20250817-WA0030.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG-20250817-WA0030.jpg" alt="Paskibra 1" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG-20250817-WA0036.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG-20250817-WA0036.jpg" alt="Paskibra 2" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG_5497.jpeg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/IMG_5497.jpeg" alt="Paskibra 3" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/PHOTO-2026-05-10-09-42-01(1).jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PASKIBRA/PHOTO-2026-05-10-09-42-01(1).jpg" alt="Paskibra 4" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESENTASI -->
+    <div class="tab-panel" id="tab-presentasi">
+      <div class="collage-presentasi">
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PRESENTASI/PHOTO-2026-05-10-07-55-12(3).jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PRESENTASI/PHOTO-2026-05-10-07-55-12(3).jpg" alt="Presentasi 1" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <div class="ci" onclick="openLightbox('https://raw.githubusercontent.com/websipp/Anisa/main/PRESENTASI/PHOTO-2026-05-10-07-55-12.jpg')">
+          <img src="https://raw.githubusercontent.com/websipp/Anisa/main/PRESENTASI/PHOTO-2026-05-10-07-55-12.jpg" alt="Presentasi 2" loading="lazy">
+          <div class="ci-overlay"></div>
+        </div>
+        <!-- Video display -->
+        <div class="ci">
+          <video src="https://raw.githubusercontent.com/websipp/Anisa/main/PRESENTASI/VIDEO-2026-05-10-07-55-12(1).mp4" autoplay muted loop playsinline></video>
+          <div class="video-badge"><span class="rec-dot"></span> Live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERTIFIKAT -->
+<section class="bg-white" id="sertifikat">
+  <div class="wrap">
+    <div class="s-header reveal">
+      <div class="s-label">05 &mdash; Dokumen</div>
+      <h2 class="s-title">Sertifikat &amp; <em>Piagam</em></h2>
+      <div class="s-divider"></div>
+    </div>
+  </div>
+
+  <!-- Full-width carousel, outside .wrap so it bleeds edge to edge -->
+  <div class="sert-carousel-wrap reveal">
+    <div class="sert-track" id="sertTrack">
+      <!-- Items duplicated 3x inside JS for infinite feel; base items here -->
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Anisa%20Aulia.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Anisa%20Aulia.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Anisa Aulia</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Anisa%20Aulia_20240829_200427_0022.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Anisa%20Aulia_20240829_200427_0022.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat 2024</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Piagam%20penghargaan%20lomba%20gerak%20jalan_.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Piagam%20penghargaan%20lomba%20gerak%20jalan_.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Piagam Gerak Jalan</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Seminar%20STIE%20GICI%20BUSINES%20SCHOOL.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Seminar%20STIE%20GICI%20BUSINES%20SCHOOL.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Seminar STIE GICI</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20field%20study%20education%20ipb%20university_.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20field%20study%20education%20ipb%20university_.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Field Study IPB</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20kelas%20X.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20kelas%20X.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat Kelas X</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20mc%20seminar.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20mc%20seminar.png" alt="" loading="lazy" draggable="false"><div class="sert-label">MC Seminar</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20penghargaan%20%20paskibraka%20Cibungbulang.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20penghargaan%20%20paskibraka%20Cibungbulang.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Paskibraka Cibungbulang</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20penghargaan%20kelas%20XI.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20penghargaan%20kelas%20XI.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Penghargaan Kelas XI</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/SERTIFIKAT%20PPK_.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/SERTIFIKAT%20PPK_.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat PPK</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20salon_.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20salon_.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat Salon</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20seminar(1).png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20seminar(1).png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat Seminar (2)</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20seminar.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20seminar.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat Seminar</div></div>
+      <div class="sert-item" data-src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20volunteer.png"><img src="https://raw.githubusercontent.com/websipp/Anisa/main/sertifikat/Sertifikat%20volunteer.png" alt="" loading="lazy" draggable="false"><div class="sert-label">Sertifikat Volunteer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="bg-cream" id="skills">
+  <div class="wrap">
+    <div class="s-header reveal">
+      <div class="s-label">06 &mdash; Keahlian</div>
+      <h2 class="s-title">Keterampilan &amp; <em>Kemampuan</em></h2>
+      <div class="s-divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Public Speaking &amp; Komunikasi</h3>
+        <div class="skill-item"><div class="skill-row"><span>Public Speaking</span><span class="skill-pct">92%</span></div><div class="skill-track"><div class="skill-fill" data-w="92"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Event Hosting &amp; Moderation</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Bahasa Inggris</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.1s">
+        <h3>Teknis &amp; Organisasi</h3>
+        <div class="skill-item"><div class="skill-row"><span>Microsoft Office</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Fast Typing</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Kepemimpinan Tim</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.2s">
+        <h3>Seni &amp; Kreativitas</h3>
+        <div class="skill-item"><div class="skill-row"><span>Dance &amp; Action</span><span class="skill-pct">82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Moderator Acara</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Event Planning</span><span class="skill-pct">78%</span></div><div class="skill-track"><div class="skill-fill" data-w="78"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="bg-white" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="s-header reveal">
+        <div class="s-label" style="justify-content:center">07 &mdash; Kontak</div>
+        <h2 class="s-title" style="text-align:center">Mari <em>Terhubung</em></h2>
+        <div class="s-divider" style="margin:1rem auto"></div>
+      </div>
+      <p class="contact-desc reveal">Tertarik berkolaborasi atau sekadar menyapa? Hubungi lewat salah satu platform di bawah ini.</p>
+      <div class="contact-cards reveal">
+        <a href="https://wa.me/6285893734378" class="contact-card" target="_blank">
+          <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="c-info"><strong>WhatsApp</strong><span>0858-9373-4378</span></div>
+        </a>
+        <a href="https://instagram.com/hei.its_cha" class="contact-card" target="_blank">
+          <div class="c-icon"><i class="fab fa-instagram"></i></div>
+          <div class="c-info"><strong>Instagram</strong><span>@hei.its_cha</span></div>
+        </a>
+        <a href="mailto:acutcntk13@gmail.com" class="contact-card" target="_blank">
+          <div class="c-icon"><i class="fas fa-envelope"></i></div>
+          <div class="c-info"><strong>Email</strong><span>acutcntk13@gmail.com</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="ft-logo">Anisa Aulia</span>
+  <div class="ft-socials">
+    <a href="https://wa.me/6285893734378" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/hei.its_cha" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:acutcntk13@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+  <p>&copy; 2025 Anisa Aulia &middot; All rights reserved</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">&#215;</button>
+  <img id="lb-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script>
+/* NAV */
+const ham = document.getElementById('hamburger');
+const nav = document.getElementById('navLinks');
+ham.addEventListener('click', () => nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+/* GALLERY TABS */
+document.querySelectorAll('.gnav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gnav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    panel.classList.add('active');
+    // Start autoplay videos in newly shown tab
+    panel.querySelectorAll('video[autoplay]').forEach(v => {
+      v.load();
+      v.play().catch(() => {});
+    });
+  });
+});
+
+/* Autoplay on page load for visible tab */
+document.querySelectorAll('.tab-panel.active video[autoplay]').forEach(v => {
+  v.play().catch(() => {});
+});
+
+/* SKILL BARS */
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
+      skillObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-card').forEach(c => skillObs.observe(c));
+
+/* SCROLL REVEAL */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* LIGHTBOX */
+function openLightbox(src) {
+  const img = document.getElementById('lb-img');
+  img.src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* PROFILE FALLBACK */
+document.getElementById('profileImage').onerror = function() {
+  this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0U4QjRCQyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BQTwvdGV4dD48L3N2Zz4=';
+};
+
+/* ── SERTIFIKAT INFINITE DRAG CAROUSEL ── */
+(function() {
+  const track = document.getElementById('sertTrack');
+  if (!track) return;
+
+  // 1. Clone items 2x to fill infinite loop
+  const origItems = Array.from(track.children);
+  origItems.forEach(el => track.appendChild(el.cloneNode(true)));
+  origItems.forEach(el => track.appendChild(el.cloneNode(true)));
+
+  // 2. Wire up lightbox click on all items (including clones)
+  track.querySelectorAll('.sert-item').forEach(item => {
+    const src = item.dataset.src;
+    item.addEventListener('click', () => {
+      if (!isDragging) openLightbox(src);
+    });
+  });
+
+  const GAP = 16;
+  const ITEM_W = () => track.querySelector('.sert-item').offsetWidth + GAP;
+  const TOTAL_ORIG = origItems.length; // 14
+  const AUTO_SPEED = 0.4; // px per frame, slow drift
+
+  let offset = 0;          // current translate X (negative = moved left)
+  let raf = null;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let lastX = 0;
+  let velocity = 0;
+  let isUserInteracting = false;
+  let resumeTimer = null;
+
+  function loopBound() {
+    // bounds: 0 to -(TOTAL_ORIG * ITEM_W)
+    const oneSetW = TOTAL_ORIG * ITEM_W();
+    if (offset <= -oneSetW) offset += oneSetW;
+    if (offset > 0) offset -= oneSetW;
+  }
+
+  function applyTranslate() {
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  function autoTick() {
+    if (!isUserInteracting) {
+      offset -= AUTO_SPEED;
+      loopBound();
+      applyTranslate();
+    }
+    raf = requestAnimationFrame(autoTick);
+  }
+
+  // Start auto-scroll
+  raf = requestAnimationFrame(autoTick);
+
+
+  /* Pointer events (works for both mouse & touch) */
+  let touchStartY = 0;
+  let isHorizontalDrag = false;
+  let dragActive = false;
+
+  function onPointerDown(e) {
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : 0;
+    dragStartX = clientX;
+    touchStartY = clientY;
+    dragStartOffset = offset;
+    lastX = clientX;
+    velocity = 0;
+    isDragging = false;
+    isHorizontalDrag = false;
+    dragActive = true;
+    clearTimeout(resumeTimer);
+    // Don't preventDefault here — let browser figure out scroll direction first
+  }
+
+  function onPointerMove(e) {
+    if (!dragActive) return;
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : 0;
+    const deltaX = clientX - dragStartX;
+    const deltaY = clientY - touchStartY;
+
+    // Determine drag direction on first significant move
+    if (!isHorizontalDrag && (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4)) {
+      isHorizontalDrag = Math.abs(deltaX) > Math.abs(deltaY);
+      if (!isHorizontalDrag) {
+        // Vertical scroll intent — cancel drag entirely
+        dragActive = false;
+        track.classList.remove('grabbing');
+        return;
+      }
+    }
+
+    if (!isHorizontalDrag) return;
+
+    // Confirmed horizontal — block scroll and drag carousel
+    e.preventDefault();
+    if (Math.abs(deltaX) > 4) isDragging = true;
+    isUserInteracting = true;
+    track.classList.add('grabbing');
+    velocity = clientX - lastX;
+    lastX = clientX;
+    offset = dragStartOffset + deltaX;
+    loopBound();
+    applyTranslate();
+  }
+
+  function onPointerUp(e) {
+    if (!dragActive) return;
+    dragActive = false;
+    isHorizontalDrag = false;
+    track.classList.remove('grabbing');
+    isUserInteracting = false;
+
+    // Momentum fling
+    let fling = velocity;
+    let flingRaf;
+    function flingStep() {
+      if (Math.abs(fling) < 0.3 || isUserInteracting) return;
+      offset += fling;
+      fling *= 0.93;
+      loopBound();
+      applyTranslate();
+      flingRaf = requestAnimationFrame(flingStep);
+    }
+    flingRaf = requestAnimationFrame(flingStep);
+
+    resumeTimer = setTimeout(() => { isUserInteracting = false; }, 2000);
+  }
+
+  track.addEventListener('mousedown',  onPointerDown, { passive: true });
+  track.addEventListener('touchstart', onPointerDown, { passive: true });
+  window.addEventListener('mousemove', onPointerMove, { passive: false });
+  window.addEventListener('touchmove', onPointerMove, { passive: false });
+  window.addEventListener('mouseup',   onPointerUp,   { passive: true });
+  window.addEventListener('touchend',  onPointerUp,   { passive: true });
+})();
+</script>
 </body>
 </html>
